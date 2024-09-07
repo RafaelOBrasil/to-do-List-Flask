@@ -1,4 +1,4 @@
-.cardStyle{
+.cardStyle {
     margin-left: 20PX;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -6,18 +6,18 @@
 }
 
 
-.card-center{
+.card-center {
     align-items: start;
     justify-content: space-around;
 }
 
-.header-style{
+.header-style {
     display: flex;
     justify-content: space-around;
     width: 95vw;
 }
 
-/* Botão Concluir */ 
+/* Botão Concluir */
 .button1 {
     width: 9em;
     height: 3em;
@@ -28,9 +28,9 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-   }
-   
-   .button1::before {
+}
+
+.button1::before {
     content: '';
     width: 0;
     height: 30px;
@@ -42,13 +42,13 @@
     transition: .5s ease;
     display: block;
     z-index: -1;
-   }
-   
-   .button1:hover::before {
-    width: 9em;
-   }
+}
 
-   /* Botão Excluir */ 
+.button1:hover::before {
+    width: 9em;
+}
+
+/* Botão Excluir */
 .button2 {
     width: 9em;
     height: 3em;
@@ -59,9 +59,9 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-   }
-   
-   .button2::before {
+}
+
+.button2::before {
     content: '';
     width: 0;
     height: 30px;
@@ -73,24 +73,52 @@
     transition: .5s ease;
     display: block;
     z-index: -1;
-   }
-   
-   .button2:hover::before {
-    width: 9em;
-   }
+}
 
-.nav-item{
+.button2:hover::before {
+    width: 9em;
+}
+
+.nav-item {
     font-size: 12px;
 }
 
-.btn-sair{
+#btn-sair {
     border: solid 1px #212529;
     border-radius: 10px;
+    & a {
+        color: #212529;
+
+    }
+
 }
 
-.btn-sair:hover{
+#btn-sair:hover {
+    border: solid 1px #212529;
+    border-radius: 10px;
     background-color: #212529;
-     & a{
+
+
+    & a {
         color: white;
-     }
+
+    }
 }
+
+.btn-s{
+
+    & a{
+        color: #212529;
+        margin-right: 5px;
+    }
+}
+
+.btn-s:hover{
+
+    & a{
+        color: #212529;
+        margin-right: 5px;
+        border-bottom: solid #212529 2px;
+    }
+}
+

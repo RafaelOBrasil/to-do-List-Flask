@@ -14,14 +14,14 @@
 <div class="container">
     <header class="header-style py-3 d-flex flex-wrap" style="width: 100%;">
         <div style="display: flex; justify-content: space-between; width: 95vw;">
-            <a href="/" class="d-flex me-md-5 text-dark text-decoration-none">
+            <a href="listaTarefas" class="d-flex me-md-5 text-dark text-decoration-none">
                 <img src="../static/images/logo.png" alt="" height="30px">
             </a>
     
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="{{ url_for('novaTarefa') }}" class="nav-link">NovaTarefa</a></li>
-                <li class="nav-item"><a href="{{ url_for('listaTarefasConcluidas') }}" class="nav-link">Concluídas</a></li>
-                <li class="nav-item btn-sair"><a href="{{ url_for('deslogarUsuario') }}" class="nav-link">Sair</a></li>
+                <li class="nav-item btn-s"><a href="{{ url_for('novaTarefa') }}" class="nav-link txt-color">NovaTarefa</a></li>
+                <li class="nav-item btn-s"><a href="{{ url_for('listaTarefasConcluidas') }}" class="nav-link txt-color">Concluídas</a></li>
+                <li class="nav-item" id="btn-sair"><a href="{{ url_for('deslogarUsuario') }}" class="nav-link">Sair</a></li>
             </ul>
         </div>
 

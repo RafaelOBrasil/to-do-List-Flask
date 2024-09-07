@@ -58,7 +58,7 @@ def validarLogin():
             session["id_user"] = usuario_logado[0]
             return redirect(url_for("listaTarefas"))
         else:
-            return "Usuário ou senha incorretos"
+            return render_template("login.html", erro = "Usuario ou senha Incorretos")
 
     return render_template("login.html")
 
@@ -106,7 +106,7 @@ def listaTarefasConcluidas():
     return render_template("listaConcluidas.html", tarefas=tarefas)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["POST"])
 def deslogarUsuario():
 
     return redirect(url_for("login.html"))
@@ -153,20 +153,19 @@ def novaTarefa():
             con.commit()
             con.close()
 
-            id_user = session["id_user"]
-
+            status = "Pendente"
             # Conectar ao banco de dados
             con = sqlite3.connect("./db/to_do_list.db")
             cur = con.cursor()
 
             # Buscar as tarefas do usuário
-            cur.execute("SELECT * FROM TAREFAS WHERE id_usuario = ?", (id_user,))
+            cur.execute("SELECT * FROM TAREFAS WHERE id_usuario = ? AND status = ?", (id_user, status))
             tarefas = cur.fetchall()
             con.close()
 
             return render_template("listatarefas.html", tarefas=tarefas)
 
-
+# Deletar tarefa
 @app.route("/deletar", methods=["POST"])
 def deletarTarefa():
     if request.method == "POST":
@@ -213,7 +212,6 @@ def concluirTarefa():
 
     id_user = session["id_user"]
     status = "Pendente"
-
 
     # Conectar ao banco de dados
     con = sqlite3.connect("./db/to_do_list.db")
