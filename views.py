@@ -212,13 +212,15 @@ def concluirTarefa():
         con.close()
 
     id_user = session["id_user"]
+    status = "Pendente"
+
 
     # Conectar ao banco de dados
     con = sqlite3.connect("./db/to_do_list.db")
     cur = con.cursor()
 
     # Buscar as tarefas do usuário
-    cur.execute("SELECT * FROM TAREFAS WHERE id_usuario = ?", (id_user,))
+    cur.execute("SELECT * FROM TAREFAS WHERE id_usuario = ? AND status = ?", (id_user, status))
     tarefas = cur.fetchall()
     con.close()
 
