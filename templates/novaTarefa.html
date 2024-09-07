@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous">
+
+    </head>
+
+    <div class="container">
+        <header class="header-style py-3 d-flex flex-wrap" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between; width: 95vw;">
+                <a href="/" class="d-flex me-md-5 text-dark text-decoration-none">
+                    <img src="../static/images/logo.png" alt="" height="30px">
+                </a>
+        
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="{{ url_for('listaTarefas') }}" class="nav-link">Tarefas</a></li>
+                    <li class="nav-item"><a href="{{ url_for('listaTarefasConcluidas') }}" class="nav-link">Concluídas</a></li>
+                    <li class="nav-item btn-sair"><a href="{{ url_for('deslogarUsuario') }}" class="nav-link">Sair</a></li>
+                </ul>
+            </div>
+    
+            
+        </header>
+        <hr style="color: black; margin-top: 0;">
+    </div>
+    <body>
+        <form class="vh-50 gradient-custom" action="{{ url_for('novaTarefa') }}"
+            method="post">
+            <div class="container py-5 h-100">
+                <div
+                    class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white"
+                            style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+
+                                <div class="mb-md-5 mt-md-4 pb-5">
+
+                                    <h2
+                                        class="fw-bold mb-5 text-uppercase">Nova Tarefa</h2>
+
+                                    <div data-mdb-input-init
+                                        class="form-outline form-white mb-4">
+                                        <input name="titulo" minlength="3"
+                                            maxlength="100" placeholder="Titulo"
+                                            type="text"
+                                            class="form-control form-control-lg " />
+                                        <p class="text-start" style="font-size: 12px;">Entre 3 e 100 caracteres.</p>
+                                    </div>
+
+                                    <div data-mdb-input-init
+                                        class="form-outline form-white mb-4">
+                                        <input name="descricao"
+                                            placeholder="Descrição" type="text"
+                                            class="form-control form-control-lg" />
+                                        <p class="text-start" style="font-size: 12px;">Adicione uma descrição breve.</p>
+
+                                    </div>
+
+                                    <div data-mdb-input-init
+                                        class="form-outline form-white mb-4">
+                                        <input name="data" placeholder="Data"
+                                            type="date" min="{{data_atual}}"
+                                            value="{{data_atual}}"
+                                            class="form-control form-control-lg" />
+                                        <p class="text-start" style="font-size: 12px;">A data de vencimento deve ser no futuro.</p>
+                                        <p class="error text-danger">{{ erro }}</p>
+
+                                    </div>
+
+                                    <div data-mdb-input-init
+                                        class="form-outline form-white mb-4">
+                                        <input name="status"
+                                            style="display: none;"
+                                            placeholder="Status" type="text"
+                                            value="Pendente"
+                                            class="form-control form-control-lg" />
+                                    </div>
+
+                                    <button data-mdb-button-init
+                                        data-mdb-ripple-init
+                                        class="btn btn-outline-light btn-lg px-5"
+                                        type="submit">Adicionar tarefa</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

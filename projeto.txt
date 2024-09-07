@@ -1,0 +1,44 @@
+Descrição do Projeto
+Desenvolver uma aplicação CRUD simples utilizando a stack de sua preferência onde o candidato deve criar um sistema de gerenciamento de tarefas (to-do list).
+
+Requisitos:
+1. Autenticação de Usuário:
+O sistema deve permitir o cadastro de novos usuários e o login.
+Cada usuário deve visualizar e gerenciar apenas suas próprias tarefas.
+
+2. Gerenciamento de Tarefas:
+Um usuário pode adicionar, editar, visualizar e excluir tarefas.
+Cada tarefa deve ter os seguintes campos:
+Título
+Descrição
+Data de vencimento
+Status (pendente/concluída).
+
+3. Regras de Negócio:
+O campo título é obrigatório e deve ter entre 3 e 100 caracteres.
+O campo descrição é opcional.
+A data de vencimento deve ser válida e no futuro.
+O status deve ser atualizado para "concluída" apenas se a tarefa estiver dentro do prazo.
+
+4. Validações:
+Implementar as validações necessárias para os campos do CRUD (ex: campo obrigatório, tamanho mínimo/máximo).
+
+5. Interface:
+Utilizar Bootstrap para criar uma interface simples e responsiva.
+Listar as tarefas em uma tabela paginada com filtro de status (pendente/concluída).
+Um botão para "Marcar como Concluída" ao lado de cada tarefa.
+
+6. Publicação no GitHub:
+Após finalizar, o candidato deve subir o código para um repositório público no GitHub com um README.md contendo:
+Instruções de instalação.
+Breve descrição do projeto.
+Passo a passo para rodar o projeto localmente.
+Enviar para pedro@athenas.com.br o link do repositório.
+
+Critérios de Avaliação:
+Organização do código.
+Funcionalidade do CRUD.
+Persistir em banco de dados será um diferencial.
+Aplicação de boas práticas de programação.
+Clareza nas instruções do README.
+Uso correto do versionamento no Git.
