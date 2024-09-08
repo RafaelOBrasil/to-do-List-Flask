@@ -1,4 +1,7 @@
 {
     "docwriter.style": "Auto-detect",
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+    "python.analysis.extraPaths": [
+        "./db"
+    ]
 }
