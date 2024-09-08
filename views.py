@@ -175,7 +175,7 @@ def deletarTarefa():
         con = sqlite3.connect("./db/to_do_list.db")
         cur = con.cursor()
 
-        cur.execute("DELETE FROM TAREFAS WHERE id = ?", (id_tarefa))
+        cur.execute("DELETE FROM TAREFAS WHERE id = ?", (id_tarefa,))
 
         con.commit()
         con.close()
