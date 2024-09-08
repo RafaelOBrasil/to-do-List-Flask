@@ -66,6 +66,10 @@ def validarLogin():
 # Listar tarefas do usuário logado
 @app.route("/listaTarefas", methods=["GET"])
 def listaTarefas():
+
+    data = date.today()
+    data_atual = data.strftime("%d/%m/%Y")
+
     if "id_user" not in session:
         return redirect(url_for("validarLogin"))
 
@@ -82,7 +86,7 @@ def listaTarefas():
     tarefas = cur.fetchall()
     con.close()
 
-    return render_template("listatarefas.html", tarefas=tarefas)
+    return render_template("listatarefas.html", tarefas=tarefas, data_atual = data_atual)
 
 
 # Listar tarefas concluidas do usuário logado
@@ -149,7 +153,8 @@ def novaTarefa():
                 "INSERT INTO TAREFAS (titulo, descricao, data, status, id_usuario) VALUES (?, ?,?,?,?)",
                 (tituloInf, descricaoInf, data_formatada, status, id_user),
             )
-
+            data = date.today()
+            data_atual = data.strftime("%d/%m/%Y")
             con.commit()
             con.close()
 
@@ -163,7 +168,7 @@ def novaTarefa():
             tarefas = cur.fetchall()
             con.close()
 
-            return render_template("listatarefas.html", tarefas=tarefas)
+            return render_template("listatarefas.html", tarefas=tarefas, data_atual=data_atual)
 
 # Deletar tarefa
 @app.route("/deletar", methods=["POST"])
@@ -180,6 +185,8 @@ def deletarTarefa():
         con.commit()
         con.close()
 
+    data = date.today()
+    data_atual = data.strftime("%d/%m/%Y")
     id_user = session["id_user"]
 
     # Conectar ao banco de dados
@@ -191,7 +198,7 @@ def deletarTarefa():
     tarefas = cur.fetchall()
     con.close()
 
-    return render_template("listatarefas.html", tarefas=tarefas)
+    return render_template("listatarefas.html", tarefas=tarefas,data_atual=data_atual)
 
 
 # Concluir tarefa
@@ -229,7 +236,7 @@ def concluirTarefa():
             tarefas = cur.fetchall()
             con.close()
 
-            return render_template("listatarefas.html", tarefas=tarefas)
+            return render_template("listatarefas.html", tarefas=tarefas,data_atual=data_atual)
                 
     id_user = session["id_user"]
     status = "Pendente"
@@ -243,4 +250,4 @@ def concluirTarefa():
     tarefas = cur.fetchall()
     con.close()
 
-    return render_template("listatarefas.html", tarefas=tarefas)
+    return render_template("listatarefas.html", tarefas=tarefas, data_atual=data_atual)
