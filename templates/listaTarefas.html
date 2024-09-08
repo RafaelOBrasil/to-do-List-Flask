@@ -60,6 +60,7 @@
                         <div>
                             <form action="{{ url_for('concluirTarefa') }}" method="post">
                             <input type="hidden" name="id_tarefa" value="{{ tarefa[0] }}">
+                            <input type="hidden" name="data_tarefa" value="{{ tarefa[3] }}">
                             <button type="submit" class="button1"
                                 style="border-radius: 30px; width: 100px; height: 30px;">Concluir</button>
                             </form>

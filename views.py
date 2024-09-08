@@ -197,19 +197,40 @@ def deletarTarefa():
 # Concluir tarefa
 @app.route("/Concluir", methods=["POST"])
 def concluirTarefa():
+
     if request.method == "POST":
 
-        id_tarefa = request.form.get("id_tarefa")
-        status = "Concluido"
+        data_tarefa = request.form.get("data_tarefa")
+        data = date.today()
+        data_atual = data.strftime("%d/%m/%Y")
 
-        con = sqlite3.connect("./db/to_do_list.db")
-        cur = con.cursor()
+        #Apenas não marca como concluido se o prazo vencer.
+        if data_atual < data_tarefa:
+            id_tarefa = request.form.get("id_tarefa")
+            status = "Concluido"
 
-        cur.execute("UPDATE TAREFAS SET status = ? WHERE id = ?", (status, id_tarefa))
+            con = sqlite3.connect("./db/to_do_list.db")
+            cur = con.cursor()
 
-        con.commit()
-        con.close()
+            cur.execute("UPDATE TAREFAS SET status = ? WHERE id = ?", (status, id_tarefa))
 
+            con.commit()
+            con.close()
+        else:
+            id_user = session["id_user"]
+            status = "Pendente"
+
+            # Conectar ao banco de dados
+            con = sqlite3.connect("./db/to_do_list.db")
+            cur = con.cursor()
+
+            # Buscar as tarefas do usuário
+            cur.execute("SELECT * FROM TAREFAS WHERE id_usuario = ? AND status = ?", (id_user, status))
+            tarefas = cur.fetchall()
+            con.close()
+
+            return render_template("listatarefas.html", tarefas=tarefas)
+                
     id_user = session["id_user"]
     status = "Pendente"
 
