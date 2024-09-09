@@ -39,11 +39,18 @@ def novoUsuario():
 
 # Logar Usuário
 @app.route("/", methods=["POST", "GET"])
+
 def validarLogin():
+    nome_usuario = ""
+    senha_usuario = ""
+
     if request.method == "POST":
 
         nome = request.form["usuario"]
         senha = request.form["senha"]
+
+        nome_usuario = nome
+        senha_usuario = senha
 
         # Conectar ao banco de dados
         con = sqlite3.connect("./db/to_do_list.db")
@@ -58,9 +65,9 @@ def validarLogin():
             session["id_user"] = usuario_logado[0]
             return redirect(url_for("listaTarefas"))
         else:
-            return render_template("login.html", erro = "Usuario ou senha Incorretos")
+            return render_template("login.html", erro = "Usuario ou senha Incorretos", nome_usuario = nome_usuario, senha_usuario = senha_usuario)
 
-    return render_template("login.html")
+    return render_template("login.html", nome_usuario = nome_usuario, senha_usuario = senha_usuario)
 
 
 # Listar tarefas do usuário logado
