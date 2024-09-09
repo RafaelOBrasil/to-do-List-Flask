@@ -14,6 +14,10 @@ def telaCadastro():
 
 @app.route("/cadastro", methods=["POST"])
 def novoUsuario():
+    nome_usuario = ""
+    senha_usuario = ""
+    csenha_usuario = ""
+
 
     if request.method == "POST":
 
@@ -21,10 +25,15 @@ def novoUsuario():
         senha = request.form["senha"]
         csenha = request.form["csenha"]
 
+        nome_usuario = nome
+        senha_usuario = senha
+        csenha_usuario = csenha
+
+
         if nome == "" or senha == "" or csenha == "":
-            return render_template("Cadastro.html", erro="Preencha Todos os Campos")
+            return render_template("Cadastro.html", erro="Preencha Todos os Campos", nome_usuario = nome_usuario, senha_usuario = senha_usuario, csenha_usuario = csenha_usuario)
         elif senha != csenha:
-            return render_template("Cadastro.html", erro="Erro ao Validar as Senhas")
+            return render_template("Cadastro.html", erro="Erro ao Validar as Senhas", nome_usuario = nome_usuario, senha_usuario = senha_usuario, csenha_usuario = csenha_usuario)
         else:
             con = sqlite3.connect("./db/to_do_list.db")
             cur = con.cursor()
@@ -34,7 +43,7 @@ def novoUsuario():
             con.commit()
             con.close()
 
-            return render_template("login.html")
+            return render_template("login.html", nome_usuario = nome_usuario, senha_usuario = senha_usuario)
 
 
 # Logar Usuário
